@@ -8,14 +8,14 @@ If you ask any engineer now days. Suggestion would come as follows.
    1) Need to follow Microservices architectural pattern, so that individual services can be deployed multiple times to handle load.
    2) Rest API should be hosted with a server which is scalable itself and can handle millions of request.
    3) Use Kubernetes based deployment of service pods with multiple replication factor.
-   4) Use of serverless framework (like - AWS lamnda, Azure Function) if cloud deployment is a choice.    
+   4) Use of serverless framework (like - AWS lambda, Azure Function) if cloud deployment is a choice.    
    5) Use the language (like - node.js) which are async in nature or using possibly Go.
-   
+      
 there could be few more as well... But someone has to realize it's not only the deployment strategy or load balancing would actually 
 help to scale one rest api. Rest API code itself needs to be capable of handling multiple request at once. 
 If the Rest API itself is written as synchronous manner then it would be bit difficult for handling such request at scale. And particularly 
 if the choice of programming language is Python then it has more challenges than normal.
-Let's see how we can we write such rest API(s)
+Let's see how we can we write such rest API(s) :
 
 ***```Synchronous Rest API :```*** 
 -----------------------------------
@@ -52,7 +52,7 @@ Let's see how we can we write such rest API(s)
 - If you notice each request is taking quite a bit of time to respond. That can be tracked based on the correlation id.
 - Because of the response delay client also actually timed out while waiting on other task to get finish.
 
-***```Asynchronous Rest API With aihttp library:```*** 
+***```Asynchronous Rest API With aiohttp library:```*** 
 -----------------------------------    
 
 - It's one of the other way of writing rest api which would perform async request and response.
@@ -265,6 +265,10 @@ Let's see how we can we write such rest API(s)
 [2019-11-11 19:53:51.357698] Sending Response ::[{"result": "success", "id": "43e34a3a-1e60-4f3c-9f7e-c50816094cab"}]
 
 ```
+- There is a very good read on this topic which I recently discovered in here 
+[https://medium.com/radix-ai-blog/performant-http-with-aiohttp-in-python-3-756580e54eff](https://medium.com/radix-ai-blog/performant-http-with-aiohttp-in-python-3-756580e54eff)
+- It's has been claimed that with asyncio and uvloop anyone can gained more performance.
+
 
 ***```Asynchronous Rest API With Quart library:```*** 
 -----------------------------------
@@ -803,7 +807,9 @@ References :
 
 [3] - [https://stackoverflow.com/questions/56729764/python-3-7-asyncio-sleep-and-time-sleep](https://stackoverflow.com/questions/56729764/python-3-7-asyncio-sleep-and-time-sleep)
 
+[4] - [https://medium.com/radix-ai-blog/performant-http-with-aiohttp-in-python-3-756580e54eff](https://medium.com/radix-ai-blog/performant-http-with-aiohttp-in-python-3-756580e54eff)
 
+[5] - [https://magic.io/blog/uvloop-blazing-fast-python-networking/](https://magic.io/blog/uvloop-blazing-fast-python-networking/)
 
    
    
