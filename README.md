@@ -783,6 +783,10 @@ Sending Response ::[{"result": "success", "id": "3cf6f4de-9dff-424e-9a67-c4aa813
 
 ```
 
+From the internal implementation point of view there would be only 2 set of differences between Sync and Async rest API.
+One of the type uses - WSGI(Web Server Gateway Interface) and other one ASGI (Asynchronous Server Gateway Interface). 
+Implementation details can be found in here - [https://buildmedia.readthedocs.org/media/pdf/asgi/latest/asgi.pdf](https://buildmedia.readthedocs.org/media/pdf/asgi/latest/asgi.pdf) 
+
 Now, the question is what would happen of all the Synchronous implementation which has already been done. 
 How to scale those without doing much modifications in code. Answer would be  
 
@@ -795,6 +799,10 @@ How to scale those without doing much modifications in code. Answer would be
 Then you can introduce a think async language layer like node.js for your metadata handling and shift the core responsibility to your autonomous
 python application services. So that most of the transactions would get taken care by the fast asyn rest API layer.
  
+But one thing you would require to keep in mind if you are planning to adopt or use Async Web frameworks for your API or web developement 
+you would need to make sure it has proper eco-system around it supporting asynchronous functionalities or coroutines. For an example : It should have proper Auth library for authentication purpose
+ or could ORM libraries for any databases. In such scenarios I would suggest to take a peek of list of supported aio-libs in [https://github.com/aio-libs](https://github.com/aio-libs)   
+
 Then ofcourse above listed points could be useful extension of this coding exercise which can also be used to 
 enhance the scalability.
 
@@ -811,7 +819,7 @@ References :
 
 [5] - [https://magic.io/blog/uvloop-blazing-fast-python-networking/](https://magic.io/blog/uvloop-blazing-fast-python-networking/)
 
-   
+[6] - [https://deepsource.io/blog/new-python-web-frameworks/](https://deepsource.io/blog/new-python-web-frameworks/)  
    
 
  
